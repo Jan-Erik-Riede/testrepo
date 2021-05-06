@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Surfshop</title>
+    <link href="../static/css/template.css" th:href="@{/css/template.css}" rel="stylesheet">
+    <link href="../static/css/util.css" type="text/css" th:href="@{/css/util.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar-->
+<nav role="navigation" class="primary-navigation">
+    <ul>
+        <li>
+            <form th:action="@{/template}" method="get">
+                <button class="selected" type="submit">
+                    Arbeitsplanansicht
+                </button>
+            </form>
+        </li>
+        <li><a href="#">Anfragen &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/urlaub}" method="get">
+                        <button type="submit">
+                            Urlaub
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/freie-tage}" method="get">
+                        <button type="submit">
+                            Freie Tage
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Profil &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/edituser}" method="get">
+                        <button type="submit">
+                            Bearbeiten
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/logout}" method="get">
+                        <button type="submit">
+                            Abmelden
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+.container {
+    width:100%;
+}
+nav.primary-navigation ul li:hover > ul,
+nav.primary-navigation ul li ul:hover {
+    z-index: 1;
+}
+.create-user-box {
+    width:900px;
+    border-top-left-radius:9px;
+    border-top-right-radius:9px;
+    border-bottom-right-radius:9px;
+    margin:40px auto;
+    height:765px;
+    -webkit-box-shadow: 5px 5px 4px -3px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 4px -3px rgba(0,0,0,0.3);
+    z-index:0;
+}
+h4 {
+    margin:10px auto;
+}
+.row:first-child .column {
+    background-color: #5e745e;
+    color:white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width:100%;
+}
+.row {
+    height:80px;
+}
+.row:nth-child(even) .column{
+    background-color: #e5d2bd;
+}
+.create-user-box .row:nth-child(9) .column:nth-child(1) {
+    border-bottom-left-radius:10px;
+}
+.create-user-box .row:nth-child(9) .column:nth-child(4) {
+    border-bottom-right-radius:10px;
+}
+.column {
+    float:left;
+    background-color: #e5d2bd;
+    text-align: center;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.column label {
+    position: absolute;
+    top:2px;
+    left:0px;
+    font-size:20px;
+}
+
+.column input{
+    padding:15px 8px 15px 8px;
+    border-radius: 10px;
+    position: absolute;
+    top:25px;
+    left:0px;
+    border:none;
+    background-color: #eeeeee;
+    font-size: 18px;
+}
+.column input:focus {
+    outline: none;
+    box-shadow: 0 0 3px #5e745e;
+    border:1px solid #5e745e;
+}
+.row:nth-child(7) label,
+.row:nth-child(8) label{
+    left:40px;
+    top:32px;
+}
+.row:nth-child(7) input,
+.row:nth-child(8) input{
+    top:28px;
+    opacity: 0;
+}
+.column button {
+    border-radius: 5px;
+    padding:5px;
+    background-color: #5e745e;
+    color:white;
+}
+.column button:hover {
+    background-color: #738873;
+    color:white;
+}
+.row:nth-child(7) .radio-label,
+.row:nth-child(8) .radio-label{
+    position: relative;
+    width:25px;
+    height:25px;
+    background-color: white;
+    border-radius: 100%;
+    left:-72px;
+    top:1px;
+}
+.row .column .radio[type="radio"] {
+    width:25px;
+    height: 25px;
+    background-color: #5e745e;
+}
+input[type="radio"]:checked + .radio-label{
+    width:17px;
+    height:17px;
+    background-color: #5e745e;
+    border-radius: 100%;
+    border:4px solid white;
+}
+.row .column .text-danger{
+    font-size:13px;
+    color:red;
+    position: absolute;
+    top:76px;
+    left:0;
+    z-index: 4;
+}
+.cancel-box {
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1;
+    width:100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.60);
+}
+.cancel-content {
+    margin:200px auto;
+    width:400px;
+    heigth:500px;
+    background-color: white;
+    padding:30px;
+    box-shadow: 5px 5px 15px black;
+    animation-name:cancel-content-open;
+    animation-duration: 0.5s;
+}
+.cancel-content{
+    text-align: center;
+}
+.cancel-content .meldung{
+    width:100%;
+}
+.cancel-content button {
+    border-radius: 20px;
+    width: 160px;
+    padding: 5px;
+    background-color: #5e745e;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 30px;
+}
+.cancel-content button:hover {
+    cursor:pointer;
+}
+.cancel-content button:hover {
+    background-color: #738873;
+}
+.cancel-content button:focus {
+    background-color: #435743;
+}
+
+
+@keyframes cancel-content-open {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+/* Typ="number" Feld Fix ohne plus minus am Rand */
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+input[type="radio"] {
+    margin-top: -1px;
+}

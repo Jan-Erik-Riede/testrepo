@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Surfshop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/login.css" type="text/css" th:href="@{/css/login.css}" rel="stylesheet">
+    <link href="../static/css/util.css" type="text/css" th:href="@{/css/util.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+</head>
+<body>
+<div class="container">
+    <div class="container-login" th:style="'background: url(' + @{https://cdn.pixabay.com/photo/2015/11/07/11/06/kite-surfing-1030818_960_720.jpg} + ') no-repeat center center fixed; background-size: cover;'">
+        <div class="wrap-login p-t-30 p-b-50">
+            <span class="login-form-title fs-55 p-b-35">
+					Surfshop
+				</span>
+            <span class="login-form-title fs-40 p-b-39">
+					Anmelden
+				</span>
+            <span class="login-form-error m-r-30 m-l-30 fs-20 m-b-30 p-b-20 p-t-20" th:if="${error}">
+                    Falsche Anmeldedaten!
+            </span>
+            <span class="login-form-logout m-r-30 m-l-30 fs-20 m-b-30 p-b-20 p-t-20" th:if="${logout}">
+                    Erfolgreich Abgemeldet!
+            </span>
+            </span>
+            <span class="login-form-error m-r-30 m-l-30 fs-20 m-b-30 p-b-20 p-t-20" th:if="${sessionError}">
+                    Benutzer bereits angemeldet!
+            </span>
+
+            <form class="login-form p-b-33 p-t-5" th:action="@{/login}" method="post">
+
+                <div class="wrap-input">
+                        <input class="input" type="text" name="username" placeholder="Benutzername" required>
+                    <span class="focus-input" data-placeholder="&#xe82a;"></span>
+                </div>
+
+                <div class="wrap-input">
+                        <input class="input" type="password" name="password" placeholder="Passwort" required>
+                    <span class="focus-input" data-placeholder="&#xe80f;"></span>
+                </div>
+
+                <div class="container-login-form-btn m-t-32">
+                    <button class="login-form-btn" id="login" type="submit" name="submit">Login</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

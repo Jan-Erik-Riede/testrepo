@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Surfshop</title>
+    <link href="../static/dienstplan.css" th:href="@{/dienstplan.css}" rel="stylesheet" />
+    <link href="../static/css/template.css" th:href="@{/css/template.css}" rel="stylesheet">
+    <link href="../static/css/util.css" type="text/css" th:href="@{/css/util.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar-->
+<nav role="navigation" class="primary-navigation">
+    <ul>
+        <li>
+            <form th:action="@{/template}" method="get">
+                <button class="selected" type="submit">
+                    Arbeitsplanansicht
+                </button>
+            </form>
+        </li>
+        <li>
+            <a href="#">Benutzermanagement &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/benutzeruebersicht}" method="get">
+                        <button type="submit">
+                            Benutzerübersicht
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/createuser}" method="get">
+                        <button type="submit">
+                            Benutzer Anlegen
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Anfragen &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/urlaub}" method="get">
+                        <button type="submit">
+                            Urlaub
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/freie-tage}" method="get">
+                        <button type="submit">
+                            Freie Tage
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Profil &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/edituser}" method="get">
+                        <button type="submit">
+                            Bearbeiten
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/logout}" method="get">
+                        <button type="submit">
+                            Abmelden
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="main">
+    <div class="fix-box"></div>
+    <div class="menu-box">
+        <div id="menu">
+            <ul>
+                <li class="topmenu selected">
+                    <a href="">April</a>
+                    <ul>
+                        <li class="submenu"><a href="">Januar</a></li>
+                        <li class="submenu"><a href="">Februar</a></li>
+                        <li class="submenu"><a href="">März</a></li>
+                        <li class="submenu selected"><a href="">April</a></li>
+                        <li class="submenu"><a href="">Mai</a></li>
+                        <li class="submenu"><a href="">Juni</a></li>
+                        <li class="submenu"><a href="">Juli</a></li>
+                        <li class="submenu"><a href="">August</a></li>
+                        <li class="submenu"><a href="">September</a></li>
+                        <li class="submenu"><a href="">Oktober</a></li>
+                        <li class="submenu"><a href="">November</a></li>
+                        <li class="submenu"><a href="">Dezember</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="content-box">
+        <table>
+            <caption>April 2021</caption>
+            <tr class="table-head">
+                <th class="date">KW17</th>
+                <th class="day">Montag</th>
+                <th class="day">Dienstag</th>
+                <th class="day ">Mittwoch</th>
+                <th class="day">Donnerstag</th>
+                <th class="day">Freitag</th>
+                <th class="day">Samstag</th>
+                <th class="day">Sonntag</th>
+                <th class="soll">Soll</th>
+                <th class="ist">Ist</th>
+            </tr>
+            <tr>
+                <td class="mitarbeiter">Nitsch, Simon</td>
+                <td class="day"></td>
+                <td class="day"></td>
+                <td class="day frei"></td>
+                <td class="day"></td>
+                <td class="day"><div class="dot"></div></td>
+                <td class="day"></td>
+                <td class="day urlaub"></td>
+                <td class="soll">6</td>
+                <td class="ist">4</td>
+            </tr>
+            <tr>
+                <td class="mitarbeiter">Baum, Jürgen</td>
+                <td class="day"></td>
+                <td class="day"></td>
+                <td class="day"></td>
+                <td class="day"></td>
+                <td class="day"><div class="dot"></div></td>
+                <td class="day"></td>
+                <td class="day"></td>
+                <td class="soll">6</td>
+                <td class="ist">4</td>
+            </tr>
+
+        </table>
+
+
+    </div>
+
+    <div class="temp">
+        <p>Hinweis:<br> Für erweiterte Optionen auf den jeweiligen Wochentag klicken</p>
+        <button id="drucken" type="submit" name="submit" class="button">Drucken</button>
+    </div>
+</div>
+
+
+</body>
+</html>

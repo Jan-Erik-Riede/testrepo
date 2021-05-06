@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../static/css/template.css" th:href="@{/css/template.css}" rel="stylesheet">
+    <link href="../static/css/util.css" type="text/css" th:href="@{/css/util.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+    <link href="../static/css/benutzeruebersicht.css" th:href="@{/css/benutzeruebersicht.css}" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar-->
+<nav role="navigation" class="primary-navigation">
+    <ul>
+        <li>
+            <form th:action="@{/template}" method="get">
+                <button type="submit">
+                    Arbeitsplanansicht
+                </button>
+            </form>
+        </li>
+        <li>
+            <a href="#">Benutzermanagement &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/benutzeruebersicht}" method="get">
+                        <button type="submit">
+                            Benutzerübersicht
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/createuser}" method="get">
+                        <button type="submit">
+                            Benutzer Anlegen
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Anfragen &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/urlaub}" method="get">
+                        <button type="submit">
+                            Urlaub
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/freie-tage}" method="get">
+                        <button type="submit">
+                            Freie Tage
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Profil &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/edituser}" method="get">
+                        <button type="submit">
+                            Bearbeiten
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/logout}" method="get">
+                        <button type="submit">
+                            Abmelden
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<div class="main">
+    <div class="container p-t-15">
+        <h2>Benutzerliste</h2>
+
+        <div class="container-above-table">
+            <div class="wrap-span-success-message">
+            <span class="benutzer-angelegt-success m-r-30 m-l-30 fs-20 m-b-30 p-b-20 p-t-20" th:if="${benutzerangelegt}">
+                    Benutzer erfolgreich angelegt!
+            </span>
+            </div>
+        </div>
+
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1">Vorname</div>
+                <div class="col col-2">Nachname</div>
+                <div class="col col-3">Email</div>
+                <div class="col col-4">Telefonnummer</div>
+            </li>
+            <li class="table-row" th:each="user : ${users}">
+                <div class="col col-1" data-label="Vorname" th:text="${user.vorname}">Vorname</div>
+                <div class="col col-2" data-label="Nachname" th:text="${user.nachname}">Nachname</div>
+                <div class="col col-3" data-label="Email" th:text="${user.email}">Email</div>
+                <div class="col col-4" data-label="Telefonnummer" th:text="${user.telefonnummer}">
+                    Telefonnummer
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>

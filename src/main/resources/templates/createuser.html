@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Benutzer anlegen Surfshop</title>
+    <link href="../static/css/template.css" th:href="@{/css/template.css}" rel="stylesheet">
+    <link href="../static/css/util.css" type="text/css" th:href="@{/css/util.css}" rel="stylesheet">
+    <link href="../static/css/createuser.css" th:href="@{/css/createuser.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+    <script language="javascript" type="text/javascript" src="../static/js/cancelBlock.js"
+            th:src="@{/js/cancelBlock.js}"></script>
+</head>
+<body>
+<!-- Navbar-->
+<nav role="navigation" class="primary-navigation">
+    <ul>
+        <li>
+            <form th:action="@{/template}" method="get">
+                <button class="selected" type="submit">
+                    Arbeitsplanansicht
+                </button>
+            </form>
+        </li>
+        <li>
+            <a href="#">Benutzermanagement &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/benutzeruebersicht}" method="get">
+                        <button type="submit">
+                            Benutzerübersicht
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/createuser}" method="get">
+                        <button type="submit">
+                            Benutzer Anlegen
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Anfragen &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/urlaub}" method="get">
+                        <button type="submit">
+                            Urlaub
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/freie-tage}" method="get">
+                        <button type="submit">
+                            Freie Tage
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Profil &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/edituser}" method="get">
+                        <button type="submit">
+                            Bearbeiten
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/logout}" method="get">
+                        <button type="submit">
+                            Abmelden
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <form th:action="@{/createuser}" th:object="${benutzer}" method="post">
+        <div class="create-user-box">
+            <div class="row">
+                <div class="column">Benutzer anlegen</div>
+            </div>
+            <div class="row">
+                <div class="column w-20">Name</div>
+                <div class="column w-40"><label>Vorname</label>
+                    <input type="text" th:field="*{vorname}" name="firstname" class="firstname w-80"
+                           th:errorClass="is-invalid">
+                    <span th:if="${#fields.hasErrors('vorname')}" th:errors="*{vorname}" class="text-danger"></span>
+                </div>
+                <div class="column w-40"><label>Nachname</label>
+                    <input type="text" th:field="*{nachname}" name="name" class="name w-80" th:errorClass="is-invalid">
+                    <span th:if="${#fields.hasErrors('nachname')}" th:errors="*{nachname}" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column w-20">Email</div>
+                <div class="column w-80">
+                    <input type="email" th:field="*{email}" name="email" class="email w-90" th:errorClass="is-invalid">
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span></div>
+            </div>
+            <div class="row">
+                <div class="column w-20">Telefon</div>
+                <div class="column w-80"><label>Telefonnummer</label>
+                    <input type="number" th:field="*{telefonnummer}" name="telephone" class="telephone w-90"
+                           th:errorClass="is-invalid">
+                    <span th:if="${#fields.hasErrors('telefonnummer')}" th:errors="*{telefonnummer}"
+                          class="text-danger"></span></div>
+            </div>
+            <div class="row">
+                <div class="column w-20">Benutzer</div>
+                <div class="column w-40"><label>Benutzername</label>
+                    <input type="text" th:field="*{benutzername}" name="username" class="username w-80"
+                           th:errorClass="is-invalid">
+                    <span th:if="${#fields.hasErrors('benutzername')}" th:errors="*{benutzername}"
+                          class="text-danger"></span></div>
+                <div class="column w-40"><label>Passwort</label>
+                    <input type="password" th:field="*{passwort}" name="password" class="password w-80"
+                           th:errorClass="is-invalid">
+                    <span th:if="${#fields.hasErrors('passwort')}" th:errors="*{passwort}" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column w-20">Urlaub</div>
+                <div class="column w-20"><label>Urlaubstage</label>
+                    <input type="number" th:field="*{urlaubstage}" name="vacation" class="vacation w-60"
+                           th:errorClass="is-invalid">
+                    <span th:if="${#fields.hasErrors('urlaubstage')}" th:errors="*{urlaubstage}"
+                          class="text-danger"></span></div>
+                <div class="column w-60"></div>
+            </div>
+            <div class="row">
+                <div class="column w-20">Arbeitszeit</div>
+                <div class="column w-20"><label>Vollzeit</label>
+                    <input type="radio" th:field="*{arbeitszeit}" name="arbeitszeit" value="VOLLZEIT" class="radio"
+                           id="vollzeit" th:errorClass="is-invalid">
+                    <label for="vollzeit" class="radio-label"></label>
+                    <span th:if="${#fields.hasErrors('arbeitszeit')}" th:errors="*{arbeitszeit}"
+                          class="text-danger"></span></div>
+                <div class="column w-20"><label>Teilzeit</label>
+                    <input type="radio" th:field="*{arbeitszeit}" name="arbeitszeit" value="TEILZEIT" class="radio"
+                           id="teilzeit" th:errorClass="is-invalid">
+                    <label for="teilzeit" class="radio-label"></label></div>
+                <div class="column w-40"></div>
+
+            </div>
+
+            <div class="row">
+                <div class="column w-20">Rolle</div>
+                <div class="column w-20"><label>Mitarbeiter</label>
+                    <input type="radio" th:field="*{rolle}" name="benutzerrolle" value="MITARBEITER" class="radio"
+                           id="mitarbeiter" th:errorClass="is-invalid">
+                    <label for="mitarbeiter" class="radio-label"></label>
+                    <span th:if="${#fields.hasErrors('rolle')}" th:errors="*{rolle}"
+                          class="text-danger"></span>
+                </div>
+                <div class="column w-20"><label>Chef</label>
+                    <input type="radio" th:field="*{rolle}" name="benutzerrolle" value="CHEF" class="radio" id="chef"
+                           th:errorClass="is-invalid">
+                    <label for="chef" class="radio-label"></label></div>
+                <div class="column w-40"></div>
+            </div>
+
+            <div class="row">
+                <div class="column w-20"></div>
+                <div class="column w-30">
+                    <button id="accept" type="submit" name="submit" class="button w-80">Bestätigen</button>
+                </div>
+                <div class="column w-30">
+                    <button type="button" id="cancel" class="button w-80" onclick="cancelFunction()">Abbrechen</button>
+                </div>
+                <div class="column w-20"></div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </form>
+    <div class="cancel-box" style="display:none;">
+        <div class="cancel-content">
+            <div class="meldung"><span>Sind Sie sicher, dass Sie abbrechen wollen?</span></div>
+
+            <form th:action="@{/userdirect}" method="get">
+                <button id="confirmcancel" name="submit" class="button">Bestätigen</button>
+            </form>
+            <button id="declinecancel" name="submit" class="button" onclick="cancel_cancelFunction()">Abbrechen</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

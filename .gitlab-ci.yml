@@ -1,0 +1,72 @@
+image: maven:latest
+#inspired by https://gitlab.com/gitlab-examples/maven/simple-maven-example
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode"
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+Build Maven:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
+
+
+Test Maven:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
+
+services:
+  - docker:19.03.7-dind
+
+stages:
+  - build
+  - test
+  - build jar
+  - build and push docker image
+  - deploy
+
+Build Jar:
+  image: maven:3.6.3-jdk-11-slim
+  stage: build jar
+  only:
+    - master
+  before_script:
+    - source .${CI_COMMIT_REF_NAME}.env
+  script:
+    - mvn clean install -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE && mvn package -B -e -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE
+  artifacts:
+    paths:
+      - target/*.jar
+
+Docker Build:
+  image: docker:stable
+  stage: build and push docker image
+  only:
+    - master
+  before_script:
+    - source .${CI_COMMIT_REF_NAME}.env
+  script:
+    - docker build --build-arg SPRING_ACTIVE_PROFILE=$SPRING_ACTIVE_PROFILE -t $DOCKER_REPO .
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io
+    - docker push $DOCKER_REPO
+
+Deploy to Server:
+  image: ubuntu:latest
+  stage: deploy
+  only:
+    - master
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - source .${CI_COMMIT_REF_NAME}.env
+  script:
+    - ssh administrator@164.68.98.12 "docker login -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io; docker stop $APP_NAME; docker system prune -a -f; docker pull $DOCKER_REPO; docker container run -d --name $APP_NAME -p $PORT:8080 -e SPRING_PROFILES_ACTIVE=$SPRING_ACTIVE_PROFILE $DOCKER_REPO; docker logout"

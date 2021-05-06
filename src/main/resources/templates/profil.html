@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Surfshop</title>
+    <link href="../static/css/template.css" th:href="@{/css/template.css}" rel="stylesheet">
+    <link href="../static/css/util.css" type="text/css" th:href="@{/css/util.css}" rel="stylesheet">
+    <link href="../static/css/profil.css" type="text/css" th:href="@{/css/profil.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+    <script language="javascript" type="text/javascript" src="../static/js/profil.js" th:href="@{/js/profil.js}"></script>
+</head>
+<body>
+<!-- Navbar-->
+<nav role="navigation" class="primary-navigation">
+    <ul>
+        <li>
+            <form th:action="@{/template}" method="get">
+                <button type="submit">
+                    Arbeitsplanansicht
+                </button>
+            </form>
+        </li>
+        <li>
+            <a href="#">Benutzermanagement &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/benutzeruebersicht}" method="get">
+                        <button type="submit">
+                            Benutzerübersicht
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/createuser}" method="get">
+                        <button type="submit">
+                            Benutzer Anlegen
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Anfragen &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/urlaub}" method="get">
+                        <button type="submit">
+                            Urlaub
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/freie-tage}" method="get">
+                        <button type="submit">
+                            Freie Tage
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Profil &dtrif;</a>
+            <ul class="dropdown">
+                <li>
+                    <form th:action="@{/edituser}" method="get">
+                        <button type="submit">
+                            Bearbeiten
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form th:action="@{/logout}" method="get">
+                        <button type="submit">
+                            Abmelden
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<div class="main">
+    <div class="fix-box"></div>
+    <div class="menu-box">
+        <div class="info-wrapper">
+            <p>Sie sind als <span>Simon</span> <span>Nitsch</span> angemeldet</p>
+            <br><br><br><br>
+            <p>Hier können Sie Daten bearbeiten.</p>
+            <p>Die Änderungen werden für andere Benutzer sichbar sein.</p>
+            <br>
+        </div>
+    </div>
+
+    <div class="content-box" id="content-box">
+        <div class="data-wrapper">
+            <div class="wrapper-beautify">
+                <button onclick="myFunction()"><img src="../static/images/pencil.png"/></button>
+                <div class="firstname-block block">
+                    <label>Vorname</label>
+                    <input class="change-input" type="text" placeholder="Simon" style="display:none;">
+                    <div class="change-div">Simon</div>
+                </div>
+
+                <div class="surname-block block">
+                    <label>Nachname</label>
+                    <input class="change-input" type="text" placeholder="Nitsch" style="display:none;">
+                    <div class="change-div">Nitsch</div>
+                </div>
+
+                <div class="email-block block">
+                    <label>Email</label>
+                    <input class="change-input" type="text" placeholder="Nitsch@test.de" style="display:none;">
+                    <div class="change-div">Nitsch@test.de</div>
+                </div>
+
+                <div class="telephone-block block">
+                    <label>Telefon</label>
+                    <input class="change-input" type="number" placeholder="0154321131231" style="display:none;">
+                    <div class="change-div">0154321131231</div>
+                </div>
+
+                <div class="username-block block">
+                    <label>Benutzername</label>
+                    <input class="change-input" type="text" placeholder="Jürgen.nit" style="display:none;">
+                    <div class="change-div">Jürgen.nit</div>
+                </div>
+
+                <div class="password-block block">
+                    <label>Passwort</label>
+                    <input class="change-input" type="password" style="display:none;">
+                    <div class="change-div">********</div>
+                </div>
+                <div id="button-block" class="button-block block" style="display:none;">
+                    <button id="accept" type="submit" name="submit" class="button">Bestätigen</button>
+                    <button id="cancel" type="submit" name="submit" class="button">Abbrechen</button>
+                </div>
+                <div id="empty-block">
+                </div>
+                <hr>
+                <div class="urlaub-block block">
+                    <label>Urlaub</label>
+                    <div>
+                        <span>Vom <span>14.03.21</span> bis zum <span>30.03.21</span></span><br><br><br>
+                        <span>Vom <span>02.07.21</span> bis zum <span>09.07.21</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
